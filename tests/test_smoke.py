@@ -1,6 +1,7 @@
-import importlib
+from src.main import assess
 
 
-def test_main_exists():
-    mod = importlib.import_module("agent_router.cli")
-    assert hasattr(mod, "main")
+def test_assess_smoke() -> None:
+    result = assess("critical outage detected")
+    assert result.project
+    assert 0.0 <= result.score <= 1.0
